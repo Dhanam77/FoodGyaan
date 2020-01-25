@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "676815848978",
+    "firebase_url": "https://foodgyan-81d0f.firebaseio.com",
+    "project_id": "foodgyan-81d0f",
+    "storage_bucket": "foodgyan-81d0f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676815848978:android:280fe4a8d633c4b7c27acb",
+        "android_client_info": {
+          "package_name": "com.example.foodgyan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676815848978-sashhac1vpk70uvrlnrqla5br5ketskq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodgyan",
+            "certificate_hash": "26a3901b1a0b4cf0fcbdad976f59e782e3f09856"
+          }
+        },
+        {
+          "client_id": "676815848978-ha0sguukpphh169oqkmoaep6a0og4b9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBKcDY58Nr7tjxsSTK8gVQibdwtIUCB-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676815848978-ha0sguukpphh169oqkmoaep6a0og4b9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

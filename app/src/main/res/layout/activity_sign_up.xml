@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorAccent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+
+    <Button
+        android:id="@+id/signup_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/user_confirmpassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/buttons"
+        android:text="Sign Up"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+
+        />
+
+    <EditText
+        android:id="@+id/user_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/full_name"
+        android:layout_margin="20dp"
+
+        android:background="@android:color/white"
+        android:ellipsize="start"
+        android:gravity="center"
+
+
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+
+        app:layout_constraintTop_toBottomOf="@+id/signUp_logo" />
+
+    <EditText
+        android:id="@+id/user_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/user_email"
+
+
+        android:layout_margin="20dp"
+        android:background="@android:color/white"
+        android:ellipsize="start"
+        android:gravity="center"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/user_confirmpassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/user_password"
+        android:layout_margin="20dp"
+        android:background="@android:color/white"
+        android:ellipsize="start"
+        android:gravity="center"
+        android:hint="Confirm Password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/full_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/signUp_logo"
+        android:layout_margin="20dp"
+        android:background="@android:color/white"
+        android:ellipsize="start"
+        android:gravity="center"
+
+
+        android:hint="Username"
+        android:inputType="text" />
+
+    <ImageView
+        android:id="@+id/signUp_logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/foodGyanLogo" />
+
+    <ProgressBar
+        android:id="@+id/signup_progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+
+</RelativeLayout>
