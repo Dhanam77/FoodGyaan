@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
-    tools:context=".LoginActivity">
+    tools:context=".Activities.LoginActivity">
 
 
     <Button
@@ -25,8 +25,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/login_email"
-        android:background="@android:color/white"
+        android:background="@drawable/inputs"
         android:layout_margin="20dp"
+
         android:layout_marginTop="40dp"
         android:ellipsize="start"
         android:gravity="center"
@@ -42,7 +43,7 @@
         android:ellipsize="start"
         android:layout_margin="20dp"
         android:gravity="center"
-        android:background="@android:color/white"
+        android:background="@drawable/inputs"
         android:hint="Email"
         android:inputType="textEmailAddress" />
 
@@ -53,7 +54,7 @@
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:src="@drawable/foodGyanLogo" />
+        android:src="@drawable/foodgyanlogo" />
 
 
     <ProgressBar

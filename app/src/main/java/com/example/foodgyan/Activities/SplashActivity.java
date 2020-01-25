@@ -1,4 +1,4 @@
-package com.example.foodgyan;
+package com.example.foodgyan.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.foodgyan.R;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -25,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 finish();
             }
         },SPLASH_TIMEOUT);

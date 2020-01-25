@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/colorAccent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".Activities.SignUpActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 
 
     <Button
         android:id="@+id/signup_button"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_below="@id/user_confirmpassword"
+        android:layout_below="@id/gender"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/buttons"
         android:text="Sign Up"
+        android:layout_marginBottom="20dp"
         android:textColor="@android:color/black"
         android:textSize="20dp"
 
@@ -29,7 +37,7 @@
         android:layout_below="@id/full_name"
         android:layout_margin="20dp"
 
-        android:background="@android:color/white"
+        android:background="@drawable/inputs"
         android:ellipsize="start"
         android:gravity="center"
 
@@ -47,23 +55,71 @@
 
 
         android:layout_margin="20dp"
-        android:background="@android:color/white"
+        android:background="@drawable/inputs"
         android:ellipsize="start"
         android:gravity="center"
         android:hint="Password"
         android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/user_confirmpassword"
+        android:id="@+id/height"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/user_password"
         android:layout_margin="20dp"
-        android:background="@android:color/white"
+
+        android:background="@drawable/inputs"
         android:ellipsize="start"
         android:gravity="center"
-        android:hint="Confirm Password"
-        android:inputType="textPassword" />
+
+
+        android:hint="Enter height in cm"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/weight"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/height"
+        android:layout_margin="20dp"
+
+        android:background="@drawable/inputs"
+        android:ellipsize="start"
+        android:gravity="center"
+
+
+        android:hint="Enter weight in kg"
+        android:inputType="numberDecimal" />
+
+
+
+
+    <EditText
+        android:id="@+id/age"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/weight"
+        android:layout_margin="20dp"
+
+        android:background="@drawable/inputs"
+        android:ellipsize="start"
+        android:gravity="center"
+
+
+        android:hint="Age"
+        android:inputType="number" />
+
+
+    <Spinner
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/age"
+        android:layout_margin="20dp"
+        android:ellipsize="start"
+        android:gravity="center"
+        android:inputType="text" />
+
 
     <EditText
         android:id="@+id/full_name"
@@ -71,7 +127,8 @@
         android:layout_height="50dp"
         android:layout_below="@id/signUp_logo"
         android:layout_margin="20dp"
-        android:background="@android:color/white"
+
+        android:background="@drawable/inputs"
         android:ellipsize="start"
         android:gravity="center"
 
@@ -79,13 +136,14 @@
         android:hint="Username"
         android:inputType="text" />
 
+
     <ImageView
         android:id="@+id/signUp_logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/foodGyanLogo" />
+        android:layout_marginTop="30dp"
+        android:src="@drawable/foodgyanlogo" />
 
     <ProgressBar
         android:id="@+id/signup_progressBar"
@@ -95,4 +153,7 @@
         android:layout_centerInParent="true" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
+
+
+</ScrollView>
