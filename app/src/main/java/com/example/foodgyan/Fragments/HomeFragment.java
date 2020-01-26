@@ -43,10 +43,11 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
     private Toolbar mToolbar;
     private View mView;
-    private Spinner homeSpinner;
+    private TextView homeSpinner;
     private SensorManager sensorManager;
     private TextView stepCount, waterCount;
     private RelativeLayout stepLayout, waterLayout;
+    private TextView calorieCount;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private DatabaseReference Ref;
@@ -66,7 +67,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         mView = inflater.inflate(R.layout.fragment_home, container, false);
 
         InitializeFields();
-        SetupSpinner();
+      //  SetupSpinner();
 
         stepLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,12 +83,36 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
             }
         });
 
+        setupCalorieCount();
+
         return mView;
 
     }
 
+    private void setupCalorieCount() {
 
-    private void SetupSpinner() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        final Date date = new Date();
+        final String dateData = formatter.format(date);
+
+        Ref.child("Calories").child(currentUserID).child(dateData).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists())
+                {
+                    calorieCount.setText(dataSnapshot.child("calorieCount").getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+ /*   private void SetupSpinner() {
 
         String[] spinnerItems = {"Today", "Yesterday", "This Week", "Last Week", "This month"};
 
@@ -98,13 +123,14 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         //Setting the ArrayAdapter data on the Spinner
         homeSpinner.setAdapter(aa);
     }
-
+*/
 
     private void InitializeFields() {
 
-        homeSpinner = (Spinner) mView.findViewById(R.id.home_spinner);
+        homeSpinner = (TextView) mView.findViewById(R.id.home_spinner);
         stepCount = (TextView) mView.findViewById(R.id.step_count);
         waterCount = (TextView) mView.findViewById(R.id.water_count);
+        calorieCount = (TextView) mView.findViewById(R.id.calorie_count);
         stepLayout = (RelativeLayout) mView.findViewById(R.id.step_layout);
         waterLayout = (RelativeLayout) mView.findViewById(R.id.water_layout);
 

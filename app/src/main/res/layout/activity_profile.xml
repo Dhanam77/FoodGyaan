@@ -1,9 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.ProfileActivity">
+    tools:context=".Activities.FoodDetailsActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentTop="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:background="@drawable/foodgyanlogo"
+
+            />
+
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:textSize="20dp"
+        android:id="@+id/name"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="61dp"
+        android:layout_marginLeft="61dp"
+        android:layout_marginTop="226dp"
+        android:text="Name: " />
+
+
+    <TextView
+        android:textSize="20dp"
+        android:id="@+id/age"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_marginLeft="61dp"
+        android:text="Age: "
+
+        />
+    <TextView
+        android:id="@+id/gender"
+        android:textSize="20dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/age"
+        android:layout_marginLeft="61dp"
+        android:text="Gender: "
+
+        />
+
+    <TextView
+        android:id="@+id/height"
+        android:textSize="20dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gender"
+        android:layout_marginLeft="61dp"
+        android:text="Height: "
+
+        />
+
+    <TextView
+        android:id="@+id/weight"
+        android:textSize="20dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/height"
+        android:layout_marginLeft="61dp"
+        android:text="Weight: "
+
+        />
+
+
+</RelativeLayout>

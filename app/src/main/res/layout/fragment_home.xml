@@ -12,11 +12,13 @@
         android:layout_marginTop="60dp">
 
 
-        <Spinner
+        <TextView
             android:id="@+id/home_spinner"
             android:layout_width="match_parent"
             android:textAlignment="center"
             android:layout_height="40dp"
+            android:text="Today"
+            android:textSize="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp" />
 
@@ -26,8 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/home_spinner"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="0000"
+            android:text="----"
             android:textColor="@color/colorAccent"
             android:textSize="75dp"
             android:textStyle="bold" />

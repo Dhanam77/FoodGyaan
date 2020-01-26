@@ -21,6 +21,7 @@ public class AddFragment extends Fragment {
 
     private View mView;
     private CardView breakfastCard, lunchCard, dinnerCard;
+    Fragment fragment = new SearchFragment();
 
 
     public AddFragment() {
@@ -39,7 +40,6 @@ public class AddFragment extends Fragment {
         breakfastCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new SearchFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);
@@ -51,7 +51,7 @@ public class AddFragment extends Fragment {
         lunchCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new SearchFragment();
+
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);
@@ -63,7 +63,6 @@ public class AddFragment extends Fragment {
         dinnerCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new SearchFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);
