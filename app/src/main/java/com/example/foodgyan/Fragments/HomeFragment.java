@@ -27,11 +27,16 @@ import android.widget.Toast;
 import com.example.foodgyan.Activities.StepCounterActivity;
 import com.example.foodgyan.Activities.WaterCounterActivity;
 import com.example.foodgyan.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener, SensorEventListener {
@@ -42,6 +47,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     private SensorManager sensorManager;
     private TextView stepCount, waterCount;
     private RelativeLayout stepLayout, waterLayout;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    private DatabaseReference Ref;
+    private String currentUserID;
 
 
     public HomeFragment() {
@@ -54,7 +63,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
                              Bundle savedInstanceState) {
 
 
-        mView =  inflater.inflate(R.layout.fragment_home, container, false);
+        mView = inflater.inflate(R.layout.fragment_home, container, false);
 
         InitializeFields();
         SetupSpinner();
@@ -93,13 +102,38 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
     private void InitializeFields() {
 
-        homeSpinner = (Spinner)mView.findViewById(R.id.home_spinner);
+        homeSpinner = (Spinner) mView.findViewById(R.id.home_spinner);
         stepCount = (TextView) mView.findViewById(R.id.step_count);
         waterCount = (TextView) mView.findViewById(R.id.water_count);
         stepLayout = (RelativeLayout) mView.findViewById(R.id.step_layout);
         waterLayout = (RelativeLayout) mView.findViewById(R.id.water_layout);
 
-      //  sensorManager = (SensorManager) mView.getSystemService(Context.SENSOR_SERVICE);
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        currentUserID = currentUser.getUid();
+        Ref = FirebaseDatabase.getInstance().getReference();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        String dateData = formatter.format(date);
+
+        Ref.child("StepsData").child(currentUserID).child(dateData).child("Steps").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String steps = dataSnapshot.getValue().toString();
+                    stepCount.setText(steps);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //  sensorManager = (SensorManager) mView.getSystemService(Context.SENSOR_SERVICE);
 
     }
 

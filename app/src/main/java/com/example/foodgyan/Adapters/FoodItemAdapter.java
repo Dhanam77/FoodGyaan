@@ -62,26 +62,22 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.ViewHolder> implements Filterable {
+public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.ViewHolder>{
 
 
         private View myView;
         private Context mContext;
-        private ArrayList<FoodItems> AdsArrayList;
-        private ArrayList<FoodItems> AdsArrayListFull;
-        private DatabaseReference Ref;
-        String productTitle;
-        private FirebaseAuth mAuth;
-        private String currentUserID, key;
+    private ArrayList<FoodItems> AdsArrayListFull;
 
 
-        public FoodItemAdapter(Context mContext, ArrayList<FoodItems> AdsArrayList) {
+    private ArrayList<FoodItems> foodItemsArrayList;
+
+
+        public FoodItemAdapter(Context mContext, ArrayList<FoodItems> foodItemsArrayList) {
             this.mContext = mContext;
-            this.AdsArrayList = AdsArrayList;
-            AdsArrayListFull = new ArrayList<>(AdsArrayList);
-            Ref = FirebaseDatabase.getInstance().getReference();
-            mAuth = FirebaseAuth.getInstance();
-            currentUserID = mAuth.getCurrentUser().getUid();
+            this.foodItemsArrayList = foodItemsArrayList;
+            AdsArrayListFull = new ArrayList<>(foodItemsArrayList);
+
         }
 
         @NonNull
@@ -96,11 +92,11 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.ViewHo
     @Override
         public void onBindViewHolder(@NonNull final FoodItemAdapter.ViewHolder holder, int position) {
 
-            final FoodItems ads = AdsArrayList.get(position);
-            holder.foodName.setText(ads.getFoodName());
+            final FoodItems items = foodItemsArrayList.get(position);
+            holder.foodName.setText(items.getFoodName());
 
             Glide.with(mContext)
-                    .load(ads.getFoodImage())
+                    .load(items.getFoodImage())
                     .into(holder.foodImage);
 
 
@@ -108,8 +104,8 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.ViewHo
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, FoodDetailsActivity.class);
-                    intent.putExtra("foodName", ads.getFoodName());
-                    intent.putExtra("foodImage", ads.getFoodImage());
+                    intent.putExtra("foodName", items.getFoodName());
+                    intent.putExtra("foodImage", items.getFoodImage());
                     mContext.startActivity(intent);
 
                 }
@@ -120,13 +116,11 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.ViewHo
 
         @Override
         public int getItemCount() {
-            return AdsArrayList.size();
+            return foodItemsArrayList.size();
         }
 
-        @Override
-        public Filter getFilter() {
-            return adsFilter;
-        }
+
+
 
         private Filter adsFilter = new Filter() {
             @Override
@@ -158,8 +152,8 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.ViewHo
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                AdsArrayList.clear();
-                AdsArrayList.addAll((ArrayList)results.values);
+                foodItemsArrayList.clear();
+                foodItemsArrayList.addAll((ArrayList)results.values);
                 notifyDataSetChanged();
             }
         };

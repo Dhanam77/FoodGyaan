@@ -136,6 +136,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
     private void InitializeFields() {
         mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         Ref = FirebaseDatabase.getInstance().getReference();
         userName = (EditText) findViewById(R.id.full_name);

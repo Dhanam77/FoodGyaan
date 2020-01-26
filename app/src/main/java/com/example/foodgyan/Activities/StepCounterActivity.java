@@ -19,9 +19,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodgyan.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class StepCounterActivity extends AppCompatActivity implements SensorEventListener, AdapterView.OnItemSelectedListener {
 
@@ -31,7 +37,10 @@ public class StepCounterActivity extends AppCompatActivity implements SensorEven
     private SensorManager sensorManager;
     private LocalDate lastCheck = null;
     private Spinner stepSpinner;
-
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    private DatabaseReference Ref;
+    private String currentUserID;
     private boolean isRunning = false;
     private SwipeRefreshLayout swipeRefreshLayout;
     private int previousSteps;
@@ -80,8 +89,8 @@ public class StepCounterActivity extends AppCompatActivity implements SensorEven
 
 
         stepSpinner.setOnItemSelectedListener(this);
-        ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, spinnerItems);
-       // aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerItems);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         stepSpinner.setAdapter(aa);
     }
@@ -117,17 +126,24 @@ public class StepCounterActivity extends AppCompatActivity implements SensorEven
         stepCounter = (TextView)findViewById(R.id.step_counter);
         totalStepsButton = (Button) findViewById(R.id.total_steps_counter);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        mAuth = FirebaseAuth.getInstance();
+        currentUserID = mAuth.getCurrentUser().getUid();
+        Ref = FirebaseDatabase.getInstance().getReference();
 
     }
 
     //Count steps
     @Override
     public void onSensorChanged(SensorEvent event) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        String dateData = formatter.format(date);
+
 
 
         if (isRunning) {
             stepCounter.setText(String.valueOf(decimalFormat.format(event.values[0])));
-
+            Ref.child("StepsData").child(currentUserID).child(dateData).child("Steps").setValue(event.values[0]);
 
         }
     }

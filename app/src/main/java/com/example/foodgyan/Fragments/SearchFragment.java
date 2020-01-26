@@ -6,11 +6,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filterable;
 
 import com.example.foodgyan.Activities.ModelClass.FoodItems;
 import com.example.foodgyan.Adapters.FoodItemAdapter;
@@ -28,7 +30,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment {
+public abstract class SearchFragment extends Fragment implements Filterable {
 
     private SearchView searchView;
     private View mView;
@@ -56,15 +58,17 @@ public class SearchFragment extends Fragment {
 
         InitializeFields();
 
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        foodItems.setLayoutManager(layoutManager);
         Ref.child("FoodData").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
                 {
-                    if(dataSnapshot1.hasChild("Name") && dataSnapshot1.hasChild("Image"))
+                    if(dataSnapshot1.hasChild("Name") && dataSnapshot1.hasChild("ImageLink"))
                     {
                         String name = dataSnapshot1.child("Name").getValue().toString();
-                        String image = dataSnapshot1.child("Image").getValue().toString();
+                        String image = dataSnapshot1.child("ImageLink").getValue().toString();
 
                         foodItemsArrayList.add(new FoodItems(image, name));
 
@@ -80,6 +84,7 @@ public class SearchFragment extends Fragment {
 
                     }
                 }
+
 
                 FoodItemAdapter adapter = new FoodItemAdapter(getContext(), foodItemsArrayList);
                 foodItems.setAdapter(adapter);

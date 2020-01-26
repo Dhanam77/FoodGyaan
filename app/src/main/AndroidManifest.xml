@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.FoodDetailsActivity"></activity>
+        <activity android:name=".Activities.AboutUsActivity"></activity>
+        <activity android:name=".Activities.ContactUsActivity" />
+        <activity android:name=".Activities.FoodDetailsActivity" />
         <activity android:name=".Activities.WaterCounterActivity" />
         <activity android:name=".Activities.StepCounterActivity" />
         <activity android:name=".Activities.ProfileActivity" />
