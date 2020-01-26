@@ -30,7 +30,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public abstract class SearchFragment extends Fragment implements Filterable {
+public class SearchFragment extends Fragment  {
 
     private SearchView searchView;
     private View mView;

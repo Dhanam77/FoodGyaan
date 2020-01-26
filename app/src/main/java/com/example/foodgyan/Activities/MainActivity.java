@@ -20,6 +20,7 @@ import com.example.foodgyan.Fragments.HomeFragment;
 import com.example.foodgyan.Fragments.SearchFragment;
 import com.example.foodgyan.Fragments.TrackerFragment;
 import com.example.foodgyan.R;
+import com.example.foodgyan.SetGoalsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -176,6 +177,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(GravityCompat.START);
             ChangeActivity(LoginActivity.class);
             mAuth.signOut();
+
+
+        }
+        else if (id == R.id.side_goals) {
+            Intent intent = new Intent(MainActivity.this, SetGoalsActivity.class);
+            startActivity(intent);
 
 
         }
