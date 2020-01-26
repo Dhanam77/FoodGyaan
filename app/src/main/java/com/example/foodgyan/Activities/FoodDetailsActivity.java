@@ -3,6 +3,7 @@ package com.example.foodgyan.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +34,7 @@ public class FoodDetailsActivity extends AppCompatActivity {
     private CircleImageView foodimage;
     private Button addMeal;
     String calorieCount;
+    private String previousCalorie;
 
     private TextView calorieCountT, carbCount, proteinCount, vitaminsCount, foodname, fatsCount;
 
@@ -50,12 +52,23 @@ public class FoodDetailsActivity extends AppCompatActivity {
         final Date date = new Date();
         final String dateData = formatter.format(date);
 
+        Ref.child("Calories").child(currentUser.getUid()).child(dateData).child("calorieCount").addValueEventListener(new ValueEventListener() {
 
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                previousCalorie = dataSnapshot.getValue().toString();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
         addMeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Ref.child("Calories").child(currentUser.getUid()).child(dateData).child("calorieCount").setValue(calorieCount);
+                Ref.child("Calories").child(currentUser.getUid()).child(dateData).child("calorieCount").
+                        setValue(String.valueOf(Integer.parseInt(calorieCount) + Integer.parseInt(previousCalorie)));
+                startActivity(new Intent(FoodDetailsActivity.this, MainActivity.class));
             }
         });
 
@@ -77,6 +90,7 @@ public class FoodDetailsActivity extends AppCompatActivity {
                         proteinCount.setText(dataSnapshot1.child("Nutrition").child("Proteins").getValue().toString());
                         carbCount.setText(dataSnapshot1.child("Nutrition").child("Carbs").getValue().toString());
                         calorieCount = dataSnapshot1.child("Calories").getValue().toString();
+
                         calorieCountT.setText(calorieCount);
                         foodname.setText(dataSnapshot1.child("Name").getValue().toString());
                         String image = dataSnapshot1.child("ImageLink").getValue().toString();

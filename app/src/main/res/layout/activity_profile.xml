@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.FoodDetailsActivity">
+    tools:context=".Activities.ProfileActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_height="250dp"
+        android:id="@+id/rl1"
         android:layout_alignParentTop="true">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/profile_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -21,70 +21,125 @@
             android:layout_marginTop="30dp"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
-            android:background="@drawable/foodgyanlogo"
+            android:src="@drawable/foodgyanlogo"
 
             />
+
+        <TextView
+            android:id="@+id/name_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Name"
+            android:textSize="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/profile_image"
+            android:textStyle="bold" />
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/calorie_layout"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_height="800dp"
+        android:layout_below="@id/rl1"
+        >
+
+
+
+        <TextView
+            android:textSize="30dp"
+            android:id="@+id/age"
+            android:layout_marginTop="50dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Age: " />
+
+        <TextView
+            android:textSize="30dp"
+            android:id="@+id/ageText"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@+id/age"
+            android:layout_height="wrap_content"
+            android:text="----" />
+
+
+        <TextView
+            android:textSize="30dp"
+            android:id="@+id/gender"
+            android:layout_below="@+id/age"
+            android:layout_marginTop="20dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Gender: " />
+
+        <TextView
+            android:textSize="30dp"
+            android:id="@+id/genderText"
+            android:layout_below="@+id/age"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@+id/gender"
+            android:layout_height="wrap_content"
+            android:text="----" />
+
+        <TextView
+            android:textSize="30dp"
+            android:id="@+id/weight"
+            android:layout_below="@+id/gender"
+            android:layout_marginTop="20dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Weight: " />
+
+        <TextView
+            android:textSize="30dp"
+            android:id="@+id/weightText"
+            android:layout_below="@+id/gender"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@+id/weight"
+            android:layout_height="wrap_content"
+            android:text="----" />
+
+
+        <TextView
+            android:textSize="30dp"
+            android:id="@+id/height"
+            android:layout_below="@+id/weight"
+            android:layout_marginTop="20dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Height: " />
+
+        <TextView
+            android:textSize="30dp"
+            android:id="@+id/heightText"
+            android:layout_below="@+id/weight"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@+id/weight"
+            android:layout_height="wrap_content"
+            android:text="----" />
+
+
+
 
 
     </RelativeLayout>
 
 
-    <TextView
-        android:textSize="20dp"
-        android:id="@+id/name"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="61dp"
-        android:layout_marginLeft="61dp"
-        android:layout_marginTop="226dp"
-        android:text="Name: " />
 
 
-    <TextView
-        android:textSize="20dp"
-        android:id="@+id/age"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/name"
-        android:layout_marginLeft="61dp"
-        android:text="Age: "
 
-        />
-    <TextView
-        android:id="@+id/gender"
-        android:textSize="20dp"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/age"
-        android:layout_marginLeft="61dp"
-        android:text="Gender: "
 
-        />
 
-    <TextView
-        android:id="@+id/height"
-        android:textSize="20dp"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/gender"
-        android:layout_marginLeft="61dp"
-        android:text="Height: "
 
-        />
 
-    <TextView
-        android:id="@+id/weight"
-        android:textSize="20dp"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/height"
-        android:layout_marginLeft="61dp"
-        android:text="Weight: "
-
-        />
 
 
 </RelativeLayout>

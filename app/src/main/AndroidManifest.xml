@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OptimumCalories"></activity>
+        <activity android:name=".Activities.RemindersActivity"></activity>
+        <activity android:name=".OptimumCalories" />
         <activity android:name=".SetGoalsActivity" />
         <activity android:name=".Activities.FoodDetailsActivity" />
         <activity android:name=".Activities.WaterCounterActivity" />

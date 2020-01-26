@@ -2,19 +2,18 @@ package com.example.foodgyan.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
 
 import com.example.foodgyan.Fragments.AddFragment;
 import com.example.foodgyan.Fragments.ChatBotFragment;
@@ -35,7 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
 
     private DatabaseReference Ref;
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         androidx.appcompat.app.ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                MainActivity.this, drawer, mToolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
+                com.example.foodgyan.Activities.MainActivity.this, drawer, mToolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -96,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+
+
 
 
     }
@@ -126,8 +127,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 }
                 case R.id.bot_chatbot: {
-                    selectedFragment = new ChatBotFragment();
-                    break;
                 }
 
             }
@@ -148,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-
     }
 
     private void SetupToolbar() {
@@ -166,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void ChangeActivity(Class Activity) {
-        Intent intent = new Intent(MainActivity.this, Activity);
+        Intent intent = new Intent(com.example.foodgyan.Activities.MainActivity.this, Activity);
         startActivity(intent);
     }
 
@@ -180,51 +178,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
 
-        } else if (id == R.id.side_logout) {
+        }
+        if (id == R.id.side_about) {
+
+            ChangeActivity(AboutUsActivity.class);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+
+        }
+        if (id == R.id.side_optimun) {
+
+            ChangeActivity(OptimumCalories.class);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+
+        }
+        if (id == R.id.side_contact) {
+
+            ChangeActivity(ContactUsActivity.class);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+
+        }else if (id == R.id.side_logout) {
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
             ChangeActivity(LoginActivity.class);
             mAuth.signOut();
 
 
-        } else if (id == R.id.side_goals) {
+        }
+        else if (id == R.id.side_goals) {
             Intent intent = new Intent(MainActivity.this, SetGoalsActivity.class);
             startActivity(intent);
 
 
-        } else if (id == R.id.about_us) {
-            View mview = getLayoutInflater().inflate(R.layout.activity_about_us, null);
-            final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setView(mview)
-                    .setTitle("About Us")
-                    .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-
-            builder.show();
-
-        } else if (id == R.id.contact_us) {
-            View mview = getLayoutInflater().inflate(R.layout.activity_contact_us, null);
-            final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setView(mview)
-                    .setTitle("About Us")
-                    .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-
-            builder.show();
-
-        } else if (id == R.id.optimum_calories) {
-            Intent intent = new Intent(MainActivity.this, OptimumCalories.class);
-            startActivity(intent);
-
         }
+
 
         return true;
     }
