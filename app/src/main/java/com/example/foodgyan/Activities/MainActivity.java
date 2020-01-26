@@ -157,6 +157,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     private void ChangeActivity(Class Activity) {
         Intent intent = new Intent(MainActivity.this, Activity);
         startActivity(intent);

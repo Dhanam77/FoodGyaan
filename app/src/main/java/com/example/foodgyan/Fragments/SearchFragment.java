@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filterable;
 
 import com.example.foodgyan.Activities.ModelClass.FoodItems;
 import com.example.foodgyan.Adapters.FoodItemAdapter;
@@ -30,13 +29,14 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment  {
+public class SearchFragment extends Fragment {
 
     private SearchView searchView;
     private View mView;
     private DatabaseReference Ref;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
+    private FoodItemAdapter adapter;
 
     private RecyclerView foodItems;
 
@@ -86,7 +86,7 @@ public class SearchFragment extends Fragment  {
                 }
 
 
-                FoodItemAdapter adapter = new FoodItemAdapter(getContext(), foodItemsArrayList);
+                adapter = new FoodItemAdapter(getContext(), foodItemsArrayList);
                 foodItems.setAdapter(adapter);
             }
 
@@ -96,6 +96,23 @@ public class SearchFragment extends Fragment  {
             }
         });
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(adapter.getFilter() != null)
+                {
+                    adapter.getFilter().filter(newText);
+
+                }
+
+                return false;
+            }
+        });
 
 
 
