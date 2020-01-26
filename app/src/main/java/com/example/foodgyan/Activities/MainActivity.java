@@ -2,12 +2,14 @@ package com.example.foodgyan.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -19,6 +21,7 @@ import com.example.foodgyan.Fragments.ChatBotFragment;
 import com.example.foodgyan.Fragments.HomeFragment;
 import com.example.foodgyan.Fragments.SearchFragment;
 import com.example.foodgyan.Fragments.TrackerFragment;
+import com.example.foodgyan.OptimumCalories;
 import com.example.foodgyan.R;
 import com.example.foodgyan.SetGoalsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
@@ -32,7 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     private DatabaseReference Ref;
@@ -95,8 +98,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
 
-
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -147,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
+
     }
 
     private void SetupToolbar() {
@@ -178,18 +180,49 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
 
-        }  else if (id == R.id.side_logout) {
+        } else if (id == R.id.side_logout) {
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
             ChangeActivity(LoginActivity.class);
             mAuth.signOut();
 
 
-        }
-        else if (id == R.id.side_goals) {
+        } else if (id == R.id.side_goals) {
             Intent intent = new Intent(MainActivity.this, SetGoalsActivity.class);
             startActivity(intent);
 
+
+        } else if (id == R.id.about_us) {
+            View mview = getLayoutInflater().inflate(R.layout.activity_about_us, null);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setView(mview)
+                    .setTitle("About Us")
+                    .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+            builder.show();
+
+        } else if (id == R.id.contact_us) {
+            View mview = getLayoutInflater().inflate(R.layout.activity_contact_us, null);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setView(mview)
+                    .setTitle("About Us")
+                    .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+            builder.show();
+
+        } else if (id == R.id.optimum_calories) {
+            Intent intent = new Intent(MainActivity.this, OptimumCalories.class);
+            startActivity(intent);
 
         }
 

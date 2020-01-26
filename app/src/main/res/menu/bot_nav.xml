@@ -9,7 +9,7 @@
         android:id="@+id/bot_tracker"
         android:title="Tracker"
 
-        android:icon="@drawable/ic_home_black_24dp"/>
+        android:icon="@drawable/ic_add_location_black_24dp"/>
     <item
         android:id="@+id/bot_add"
         android:title="Add"
@@ -24,7 +24,7 @@
         android:id="@+id/bot_chatbot"
         android:title="Gyaani"
 
-        android:icon="@drawable/ic_home_black_24dp"/>
+        android:icon="@drawable/ic_sentiment_satisfied_black_24dp"/>
 
 
 </menu>
